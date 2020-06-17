@@ -1,10 +1,13 @@
 import React from "react";
 import './app.css';
-import store from "../../store";
+import withBookstoreService from "../hoc";
 
-const App = () => {
-    console.log(store.getState());
-    return <div>App</div>;
+const App = ({bookstoreService}) => {
+    return (
+        <div>
+            App
+            {bookstoreService.getBooks().map((e) => <div>{e.id}. {e.title} {e.author}</div>)}
+        </div>);
 };
 
-export default App;
+export default withBookstoreService()(App);
